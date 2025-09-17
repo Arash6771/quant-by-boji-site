@@ -19,33 +19,36 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState('individuals');
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-black">
       {/* Navigation */}
-      <nav className="border-b bg-white/80 backdrop-blur-md sticky top-0 z-50">
+      <nav className="border-b border-gray-800 bg-black/90 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-2">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 w-8 h-8 rounded-lg"></div>
-            <span className="font-bold text-xl text-gray-800">Quant by Boji</span>
+          <div className="flex items-center gap-3">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-blue-400">
+              <path d="M4 4 L18 4 L18 7 L12 14 L18 21 L18 24 L4 24 L4 21 L12 21 L8 17 L12 13 L4 13 Z" fill="currentColor" stroke="currentColor" strokeWidth="0.5"/>
+              <path d="M21 12 C20 11 19 12 19 14 C19 16 20 17 21 16 C22 15 23 16 23 14 C23 12 22 11 21 12 Z M21 16 C22 17 23 16 23 14 C23 12 22 11 21 12 C20 13 21 16 21 16 Z" fill="currentColor" stroke="currentColor" strokeWidth="0.5"/>
+            </svg>
+            <span className="font-bold text-xl text-white">QuantByBoji</span>
           </div>
           <div className="hidden md:flex space-x-8">
-            <Link href="/#features" className="text-gray-600 hover:text-blue-600 font-medium">Features</Link>
-            <Link href="/#pricing" className="text-gray-600 hover:text-blue-600 font-medium">Pricing</Link>
-            <Link href="/about" className="text-gray-600 hover:text-blue-600 font-medium">About</Link>
+            <Link href="/#features" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">How It Works</Link>
+            <Link href="/#pricing" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">Pricing</Link>
+            <Link href="/#about" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">About</Link>
           </div>
           <div>
-            <button className="btn btn-primary">Sign In</button>
+            <button className="btn btn-primary">Get Started</button>
           </div>
         </div>
       </nav>
       
       {/* Hero Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               <span className="gradient-text">QuantByBoji</span> Automate TradingView alerts into real Tradovate orders
             </h1>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
              End-to-End Trading Pipeline: TradingView ➜ AWS ➜ Tradovate ➜ Telegram/X
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -63,11 +66,11 @@ export default function Home() {
       </section>
       
       {/* Features Section */}
-      <section className="py-20 bg-white" id="features">
+      <section className="py-20 bg-gray-900" id="features">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">How It Works</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">5 simple steps to automate your TradingView alerts into live trades.</p>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">5 simple steps to automate your TradingView alerts into live trades.</p>
           </div>
           
           <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
@@ -77,7 +80,7 @@ export default function Home() {
                 <span className="text-blue-600 font-bold text-lg">1</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">TradingView Alerts</h3>
-              <p className="text-gray-600 text-sm">Create/enable alerts in TradingView using PineScript or strategy alert_message.</p>
+              <p className="text-gray-300 text-sm">Create/enable alerts in TradingView using PineScript or strategy alert_message.</p>
             </div>
             
             {/* Step 2 */}
@@ -86,7 +89,7 @@ export default function Home() {
                 <span className="text-blue-600 font-bold text-lg">2</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">AWS Webhook</h3>
-              <p className="text-gray-600 text-sm">Alerts POST to your secure AWS API Gateway webhook endpoint.</p>
+              <p className="text-gray-300 text-sm">Alerts POST to your secure AWS API Gateway webhook endpoint.</p>
             </div>
             
             {/* Step 3 */}
@@ -95,7 +98,7 @@ export default function Home() {
                 <span className="text-blue-600 font-bold text-lg">3</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">Lambda Processing</h3>
-              <p className="text-gray-600 text-sm">AWS Lambda (Python) parses the payload and calls the Tradovate REST API.</p>
+              <p className="text-gray-300 text-sm">AWS Lambda (Python) parses the payload and calls the Tradovate REST API.</p>
             </div>
             
             {/* Step 4 */}
@@ -104,7 +107,7 @@ export default function Home() {
                 <span className="text-blue-600 font-bold text-lg">4</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">Tradovate Orders</h3>
-              <p className="text-gray-600 text-sm">Tradovate places/updates orders (live or SIM).</p>
+              <p className="text-gray-300 text-sm">Tradovate places/updates orders (live or SIM).</p>
             </div>
             
             {/* Step 5 */}
@@ -113,18 +116,18 @@ export default function Home() {
                 <span className="text-blue-600 font-bold text-lg">5</span>
               </div>
               <h3 className="text-lg font-semibold mb-2">Telegram Alerts</h3>
-              <p className="text-gray-600 text-sm">Telegram sends you a confirmation message.</p>
+              <p className="text-gray-300 text-sm">Telegram sends you a confirmation message.</p>
             </div>
           </div>
         </div>
       </section>
       
       {/* Pricing Section */}
-      <section className="py-20 bg-gray-50" id="pricing">
+      <section className="py-20 bg-black" id="pricing">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Packages</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Choose the package that fits your automation needs.</p>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Choose the package that fits your automation needs.</p>
             
           </div>
           
@@ -136,7 +139,7 @@ export default function Home() {
                 <span className="text-4xl font-bold">$500</span>
                 <span className="text-gray-600 ml-2">one-time</span>
               </div>
-              <p className="text-gray-600 mb-6">You get the full code and documentation to deploy the pipeline yourself.</p>
+              <p className="text-gray-300 mb-6">You get the full code and documentation to deploy the pipeline yourself.</p>
               <ul className="mb-8 space-y-3">
                 <li className="flex items-center">
                   <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -186,7 +189,7 @@ export default function Home() {
                 <span className="text-4xl font-bold">$900</span>
                 <span className="text-gray-600 ml-2">one-time</span>
               </div>
-              <p className="text-gray-600 mb-6">Everything in DIY plus hands-on help to get you live fast.</p>
+              <p className="text-gray-300 mb-6">Everything in DIY plus hands-on help to get you live fast.</p>
               <ul className="mb-8 space-y-3">
                 <li className="flex items-center">
                   <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -227,7 +230,7 @@ export default function Home() {
                 <span className="text-4xl font-bold">$200</span>
                 <span className="text-gray-600 ml-2">optional</span>
               </div>
-              <p className="text-gray-600 mb-6">An extra 60-minute live session or one small customization. Only available with DIY or Full Package.</p>
+              <p className="text-gray-300 mb-6">An extra 60-minute live session or one small customization. Only available with DIY or Full Package.</p>
               <ul className="mb-8 space-y-3">
                 <li className="flex items-center">
                   <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -265,11 +268,11 @@ export default function Home() {
       </section>
       
       {/* Testimonials */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Who This Is For</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">This automation pipeline is designed for specific types of traders.</p>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">This automation pipeline is designed for specific types of traders.</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -281,10 +284,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-semibold">TradingView Users</h4>
-                  <p className="text-gray-500 text-sm">Existing Alert Systems</p>
+                  <p className="text-gray-400 text-sm">Existing Alert Systems</p>
                 </div>
               </div>
-              <p className="text-gray-600">"Traders who already have indicators/alerts in TradingView and want reliable automation without black-box solutions."</p>
+              <p className="text-gray-300">"Traders who already have indicators/alerts in TradingView and want reliable automation without black-box solutions."</p>
               <div className="flex mt-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -302,10 +305,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-semibold">Self-Hosters</h4>
-                  <p className="text-gray-500 text-sm">Technical Control</p>
+                  <p className="text-gray-400 text-sm">Technical Control</p>
                 </div>
               </div>
-              <p className="text-gray-600">"People who want to self-host and understand their automation, not rent a black box from third parties."</p>
+              <p className="text-gray-300">"People who want to self-host and understand their automation, not rent a black box from third parties."</p>
               <div className="flex mt-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -323,10 +326,10 @@ export default function Home() {
                 </div>
                 <div>
                   <h4 className="font-semibold">End-to-End Setup</h4>
-                  <p className="text-gray-500 text-sm">Complete Control</p>
+                  <p className="text-gray-400 text-sm">Complete Control</p>
                 </div>
               </div>
-              <p className="text-gray-600">"Anyone who needs a real, reproducible, end-to-end setup with full control over logic and broker credentials."</p>
+              <p className="text-gray-300">"Anyone who needs a real, reproducible, end-to-end setup with full control over logic and broker credentials."</p>
               <div className="flex mt-4">
                 {[1, 2, 3, 4, 5].map((star) => (
                   <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -360,7 +363,7 @@ export default function Home() {
       </section>
       
       {/* Footer */}
-      <footer className="py-12 bg-gray-900 text-white">
+      <footer className="py-12 bg-black text-white border-t border-gray-800">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div>
@@ -370,15 +373,15 @@ export default function Home() {
                 </div>
                 <span className="font-bold text-xl">Quant by Boji</span>
               </div>
-              <p className="text-gray-400">Automate TradingView alerts into real Tradovate orders.</p>
+              <p className="text-gray-400">Professional TradingView automation for serious traders.</p>
             </div>
             
             <div>
               <h3 className="font-semibold text-lg mb-4">Product</h3>
               <ul className="space-y-2">
-                <li><Link href="/#features" className="text-gray-400 hover:text-white">Features</Link></li>
-                <li><Link href="/#pricing" className="text-gray-400 hover:text-white">Pricing</Link></li>
-                <li><Link href="/" className="text-gray-400 hover:text-white">Testimonials</Link></li>
+                <li><Link href="/#features" className="text-gray-400 hover:text-blue-400 transition-colors">How It Works</Link></li>
+                <li><Link href="/#pricing" className="text-gray-400 hover:text-blue-400 transition-colors">Pricing</Link></li>
+                <li><Link href="/#about" className="text-gray-400 hover:text-blue-400 transition-colors">About</Link></li>
               </ul>
             </div>
             

@@ -1,0 +1,6 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sigma symbol -->
+  <path d="M4 4 L18 4 L18 7 L12 14 L18 21 L18 24 L4 24 L4 21 L12 21 L8 17 L12 13 L4 13 Z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+  <!-- Infinity symbol -->
+  <path d="M21 12 C20 11 19 12 19 14 C19 16 20 17 21 16 C22 15 23 16 23 14 C23 12 22 11 21 12 Z M21 16 C22 17 23 16 23 14 C23 12 22 11 21 12 C20 13 21 16 21 16 Z" fill="currentColor" stroke="currentColor" stroke-width="0.5"/>
+</svg>
