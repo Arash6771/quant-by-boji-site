@@ -43,10 +43,10 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="gradient-text">Quant by Boji</span> — automate TradingView alerts into real Tradovate orders
+              <span className="gradient-text">QuantByBoji</span> Automate TradingView alerts into real Tradovate orders
             </h1>
             <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              This site gives you an end-to-end pipeline: TradingView (PineScript alerts) ➜ AWS Webhook + Lambda (Python) ➜ Tradovate REST API ➜ Telegram notifications. No strategies here—just the plumbing so your own alerts can execute reliably.
+             End-to-End Trading Pipeline: TradingView ➜ AWS ➜ Tradovate ➜ Telegram/X
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
