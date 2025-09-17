@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import Stripe from "stripe";
 import { stripe, PRICE_IDS, siteUrl, enableCheckout } from "@/lib/stripe";
 
 export const runtime = "nodejs"; // needed to access raw body
@@ -34,8 +35,19 @@ export async function POST(request: Request) {
   // Handle events you care about
   switch (event.type) {
     case "checkout.session.completed":
-      // TODO: mark access active by product in your DB
-      console.log("✅ checkout.session.completed", event.data.object.id);
+      const session = event.data.object as Stripe.Checkout.Session;
+      const productType = session.metadata?.product;
+      const customerEmail = session.customer_details?.email;
+      
+      // TODO: Store purchase information in your database
+      // Example: await db.purchases.create({
+      //   email: customerEmail,
+      //   productType: productType,
+      //   purchaseDate: new Date(),
+      //   sessionId: session.id
+      // });
+      
+      console.log(`✅ User ${customerEmail} completed checkout for ${productType} (${session.id})`);
       break;
     default:
       console.log("ℹ️ Unhandled event:", event.type);
