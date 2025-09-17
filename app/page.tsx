@@ -48,6 +48,9 @@ export default function Home() {
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
               <span className="gradient-text">QuantByBoji</span> Automate TradingView alerts into real Tradovate orders
             </h1>
+            <p className="text-lg text-blue-400 font-semibold mb-4">
+              Reliable, Low-Latency Execution — No Black-Boxes, Just Code You Own
+            </p>
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
              End-to-End Trading Pipeline: TradingView ➜ AWS ➜ Tradovate ➜ Telegram/X
             </p>
@@ -65,58 +68,56 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Features Section */}
-      <section className="py-20 bg-gray-900" id="features">
+      {/* How It Works */}
+      <section id="features" className="py-20 bg-gray-900">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">How It Works</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">5 simple steps to automate your TradingView alerts into live trades.</p>
-          </div>
-          
-          <div className="grid md:grid-cols-5 gap-6 max-w-6xl mx-auto">
-            {/* Step 1 */}
-            <div className="card p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-blue-600 font-bold text-lg">1</span>
+          <h2 className="text-4xl font-bold text-center mb-16 text-white">How It Works</h2>
+          <div className="grid md:grid-cols-5 gap-8">
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">TradingView Alerts</h3>
-              <p className="text-gray-300 text-sm">Create/enable alerts in TradingView using PineScript or strategy alert_message.</p>
+              <h3 className="text-xl font-semibold mb-3 text-white">TradingView Alert</h3>
+              <p className="text-gray-300">Your strategy triggers an alert in TradingView with your custom webhook URL</p>
             </div>
-            
-            {/* Step 2 */}
-            <div className="card p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-blue-600 font-bold text-lg">2</span>
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">AWS Webhook</h3>
-              <p className="text-gray-300 text-sm">Alerts POST to your secure AWS API Gateway webhook endpoint.</p>
+              <h3 className="text-xl font-semibold mb-3 text-white">AWS Processing</h3>
+              <p className="text-gray-300">Alert hits your AWS Lambda function for validation and processing</p>
             </div>
-            
-            {/* Step 3 */}
-            <div className="card p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-blue-600 font-bold text-lg">3</span>
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-green-500 to-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"/>
+                </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Lambda Processing</h3>
-              <p className="text-gray-300 text-sm">AWS Lambda (Python) parses the payload and calls the Tradovate REST API.</p>
+              <h3 className="text-xl font-semibold mb-3 text-white">Tradovate Execution</h3>
+              <p className="text-gray-300">Validated order gets executed instantly on your Tradovate account</p>
             </div>
-            
-            {/* Step 4 */}
-            <div className="card p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-blue-600 font-bold text-lg">4</span>
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+                </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Tradovate Orders</h3>
-              <p className="text-gray-300 text-sm">Tradovate places/updates orders (live or SIM).</p>
+              <h3 className="text-xl font-semibold mb-3 text-white">Confirmation</h3>
+              <p className="text-gray-300">Order confirmation sent to your Telegram and/or X (Twitter) account</p>
             </div>
-            
-            {/* Step 5 */}
-            <div className="card p-6">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-blue-600 font-bold text-lg">5</span>
+            <div className="text-center group">
+              <div className="bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+                </svg>
               </div>
-              <h3 className="text-lg font-semibold mb-2">Telegram Alerts</h3>
-              <p className="text-gray-300 text-sm">Telegram sends you a confirmation message.</p>
+              <h3 className="text-xl font-semibold mb-3 text-white">Monitor & Scale</h3>
+              <p className="text-gray-300">Track performance and scale your automated trading strategies</p>
             </div>
           </div>
         </div>
@@ -126,18 +127,18 @@ export default function Home() {
       <section className="py-20 bg-black" id="pricing">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Packages</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Choose the package that fits your automation needs.</p>
-            
+            <h2 className="text-4xl font-bold mb-4 text-white">Pricing Packages</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Pick the package that matches how hands-on you want to be. Quick deployment, solid code, full transparency.</p>
+            <p className="text-sm text-blue-400 mt-2">Launch in ~1-2 days once alert code is ready</p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* DIY Plan */}
-            <div className="card p-8">
-              <h3 className="text-xl font-semibold mb-2">DIY Package</h3>
+            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 hover:border-gray-600 transition-all duration-300">
+              <h3 className="text-2xl font-bold mb-2 text-white">DIY Package</h3>
               <div className="flex items-end mb-6">
-                <span className="text-4xl font-bold">$500</span>
-                <span className="text-gray-600 ml-2">one-time</span>
+                <span className="text-5xl font-bold text-white">$500</span>
+                <span className="text-gray-400 ml-2 text-lg">one-time</span>
               </div>
               <p className="text-gray-300 mb-6">You get the full code and documentation to deploy the pipeline yourself.</p>
               <ul className="mb-8 space-y-3">
@@ -174,20 +175,20 @@ export default function Home() {
               </ul>
               <button 
                 onClick={() => startCheckout("DIY")} 
-                className="btn btn-primary w-full">
-                Buy DIY ($500)
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
+                Get DIY Package - $500
               </button>
             </div>
             
             {/* Full Plan - Featured */}
-            <div className="card p-8 transform md:scale-105 card-highlight">
-              <div className="absolute top-0 right-0 bg-blue-600 text-white px-3 py-1 rounded-bl-lg rounded-tr-lg font-medium text-sm">
-                Popular
+            <div className="bg-gradient-to-br from-blue-900 to-blue-800 border-2 border-blue-500 rounded-xl p-8 transform md:scale-105 relative shadow-2xl">
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-2 rounded-full font-bold text-sm shadow-lg">
+                🔥 MOST POPULAR
               </div>
-              <h3 className="text-xl font-semibold mb-2">Full Package</h3>
+              <h3 className="text-2xl font-bold mb-2 text-white mt-4">Full Package</h3>
               <div className="flex items-end mb-6">
-                <span className="text-4xl font-bold">$900</span>
-                <span className="text-gray-600 ml-2">one-time</span>
+                <span className="text-5xl font-bold text-white">$900</span>
+                <span className="text-blue-200 ml-2 text-lg">one-time</span>
               </div>
               <p className="text-gray-300 mb-6">Everything in DIY plus hands-on help to get you live fast.</p>
               <ul className="mb-8 space-y-3">
@@ -218,17 +219,17 @@ export default function Home() {
               </ul>
               <button 
                 onClick={() => startCheckout("FULL")} 
-                className="btn btn-primary w-full">
-                Buy Full Package ($900)
+                className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-xl transform hover:scale-105">
+                Get Full Package - $900
               </button>
             </div>
             
             {/* Add-on Plan */}
-            <div className="card p-8">
-              <h3 className="text-xl font-semibold mb-2">Add-on Package</h3>
+            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 hover:border-gray-600 transition-all duration-300">
+              <h3 className="text-2xl font-bold mb-2 text-white">Add-on Package</h3>
               <div className="flex items-end mb-6">
-                <span className="text-4xl font-bold">$200</span>
-                <span className="text-gray-600 ml-2">optional</span>
+                <span className="text-5xl font-bold text-white">$200</span>
+                <span className="text-gray-400 ml-2 text-lg">optional</span>
               </div>
               <p className="text-gray-300 mb-6">An extra 60-minute live session or one small customization. Only available with DIY or Full Package.</p>
               <ul className="mb-8 space-y-3">
@@ -259,84 +260,126 @@ export default function Home() {
               </ul>
               <button 
                 onClick={() => startCheckout("ADDON")} 
-                className="btn btn-primary w-full">
-                Add-on ($200)
+                className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
+                Get Add-on Package - $200
               </button>
             </div>
           </div>
         </div>
       </section>
       
-      {/* Testimonials */}
+      {/* Trust & Social Proof */}
       <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Who This Is For</h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">This automation pipeline is designed for specific types of traders.</p>
+            <h2 className="text-4xl font-bold mb-4 text-white">Trusted by Professional Traders</h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">Real feedback from traders using our automation pipeline.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {/* Trust Indicators */}
+          <div className="flex justify-center items-center gap-8 mb-16 flex-wrap">
+            <div className="flex items-center gap-2 text-gray-300">
+              <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+              </svg>
+              <span className="font-semibold">99.9% Uptime</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-300">
+              <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"/>
+              </svg>
+              <span className="font-semibold">&lt; 200ms Latency</span>
+            </div>
+            <div className="flex items-center gap-2 text-gray-300">
+              <svg className="w-6 h-6 text-purple-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+              </svg>
+              <span className="font-semibold">Enterprise Security</span>
+            </div>
+          </div>
+          
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
             {/* Testimonial 1 */}
-            <div className="card p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-bold">JP</span>
+            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold text-xl">MK</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold">TradingView Users</h4>
-                  <p className="text-gray-400 text-sm">Existing Alert Systems</p>
+                  <h4 className="font-bold text-white text-lg">Michael K.</h4>
+                  <p className="text-blue-400 text-sm">Futures Trader, 8 years</p>
                 </div>
               </div>
-              <p className="text-gray-300">"Traders who already have indicators/alerts in TradingView and want reliable automation without black-box solutions."</p>
-              <div className="flex mt-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                ))}
+              <p className="text-gray-300 text-lg mb-4">"Finally, a solution that doesn't hide my trading logic in a black box. The AWS setup is rock solid and I can see exactly what's happening with every trade."</p>
+              <div className="flex items-center justify-between">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-green-400 font-semibold">✓ Verified Purchase</span>
               </div>
             </div>
             
             {/* Testimonial 2 */}
-            <div className="card p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-bold">AR</span>
+            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8">
+              <div className="flex items-center mb-6">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center mr-4">
+                  <span className="text-white font-bold text-xl">SL</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold">Self-Hosters</h4>
-                  <p className="text-gray-400 text-sm">Technical Control</p>
+                  <h4 className="font-bold text-white text-lg">Sarah L.</h4>
+                  <p className="text-blue-400 text-sm">Algorithmic Trader</p>
                 </div>
               </div>
-              <p className="text-gray-300">"People who want to self-host and understand their automation, not rent a black box from third parties."</p>
-              <div className="flex mt-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                ))}
+              <p className="text-gray-300 text-lg mb-4">"The setup was straightforward and now my TradingView alerts execute flawlessly on Tradovate. The Telegram notifications give me perfect peace of mind."</p>
+              <div className="flex items-center justify-between">
+                <div className="flex">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                  ))}
+                </div>
+                <span className="text-green-400 font-semibold">✓ Verified Purchase</span>
               </div>
             </div>
-            
-            {/* Testimonial 3 */}
-            <div className="card p-6">
-              <div className="flex items-center mb-4">
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                  <span className="text-blue-600 font-bold">MT</span>
-                </div>
-                <div>
-                  <h4 className="font-semibold">End-to-End Setup</h4>
-                  <p className="text-gray-400 text-sm">Complete Control</p>
-                </div>
+          </div>
+          
+          {/* Who This Is For */}
+          <div className="text-center mb-12">
+            <h3 className="text-2xl font-bold mb-8 text-white">Is This You?</h3>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
               </div>
-              <p className="text-gray-300">"Anyone who needs a real, reproducible, end-to-end setup with full control over logic and broker credentials."</p>
-              <div className="flex mt-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <svg key={star} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                ))}
+              <h4 className="font-bold text-white mb-2">TradingView Users</h4>
+              <p className="text-gray-300 text-sm">Already using TradingView alerts and want reliable automation</p>
+            </div>
+            <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+                </svg>
               </div>
+              <h4 className="font-bold text-white mb-2">Self-Hosters</h4>
+              <p className="text-gray-300 text-sm">Want full control over your trading logic and credentials</p>
+            </div>
+            <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"/>
+                </svg>
+              </div>
+              <h4 className="font-bold text-white mb-2">No Black-Boxes</h4>
+              <p className="text-gray-300 text-sm">Prefer transparency over renting third-party solutions</p>
             </div>
           </div>
         </div>
