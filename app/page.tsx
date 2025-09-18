@@ -46,7 +46,7 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="gradient-text">QuantByBoji</span> Automate TradingView alerts into real Tradovate orders
+              <span className="gradient-text">Automate TradingView alerts into real Tradovate orders</span>
             </h1>
             <p className="text-lg text-blue-400 font-semibold mb-4">
               Reliable, Low-Latency Execution — No Black-Boxes, Just Code You Own
