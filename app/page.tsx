@@ -75,17 +75,19 @@ export default function Home() {
           <div className="grid md:grid-cols-5 gap-8">
             <div className="text-center group">
               <div className="bg-gradient-to-br from-blue-500 to-blue-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 3h18v18H3V3zm2 2v14h14V5H5zm2 2h10v2H7V7zm0 4h10v2H7v-2zm0 4h6v2H7v-2z"/>
+                  <path d="M15 13l2-2 2 2v4h-4v-4z" fill="#2196F3"/>
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">TradingView Alert</h3>
               <p className="text-gray-300">Your strategy triggers an alert in TradingView with your custom webhook URL</p>
             </div>
             <div className="text-center group">
-              <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
+              <div className="bg-gradient-to-br from-orange-500 to-orange-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M6.5 12L9 7h6l2.5 5L15 17H9l-2.5-5z" fill="#FF9900"/>
+                  <path d="M12 4l8 4v8l-8 4-8-4V8l8-4zm0 2L6 9v6l6 3 6-3V9l-6-3z" stroke="currentColor" strokeWidth="1" fill="none"/>
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">AWS Processing</h3>
@@ -93,27 +95,34 @@ export default function Home() {
             </div>
             <div className="text-center group">
               <div className="bg-gradient-to-br from-green-500 to-green-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"/>
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z" fill="#4CAF50"/>
+                  <path d="M8 12l2 2 6-6" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">Tradovate Execution</h3>
               <p className="text-gray-300">Validated order gets executed instantly on your Tradovate account</p>
             </div>
             <div className="text-center group">
-              <div className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              <div className="bg-gradient-to-br from-blue-400 to-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" fill="#0088CC"/>
+                  <path d="M8 12l2 2 6-6" stroke="white" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M16 8l4 4-4 4" stroke="white" strokeWidth="1.5" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">Confirmation</h3>
               <p className="text-gray-300">Order confirmation sent to your Telegram and/or X (Twitter) account</p>
             </div>
             <div className="text-center group">
-              <div className="bg-gradient-to-br from-indigo-500 to-indigo-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"/>
+              <div className="bg-gradient-to-br from-purple-500 to-purple-700 text-white rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4 shadow-lg group-hover:scale-110 transition-transform">
+                <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M3 3v18h18V3H3zm16 16H5V5h14v14z"/>
+                  <path d="M7 14l3-3 2 2 4-4" stroke="#9C27B0" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"/>
+                  <circle cx="7" cy="14" r="1" fill="#9C27B0"/>
+                  <circle cx="10" cy="11" r="1" fill="#9C27B0"/>
+                  <circle cx="12" cy="13" r="1" fill="#9C27B0"/>
+                  <circle cx="16" cy="9" r="1" fill="#9C27B0"/>
                 </svg>
               </div>
               <h3 className="text-xl font-semibold mb-3 text-white">Monitor & Scale</h3>
