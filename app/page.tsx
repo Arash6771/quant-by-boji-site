@@ -1,22 +1,53 @@
 "use client";
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSession, signIn } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
+import { startCheckout } from '@/lib/checkout';
 
-async function startCheckout(product: "DIY"|"FULL"|"ADDON") {
-  const res = await fetch("/api/checkout", { 
-    method: "POST", 
-    headers: { "Content-Type": "application/json" }, 
-    body: JSON.stringify({ product }) 
-  });
-  
-  const data = await res.json();
-  if (data?.url) window.location.href = data.url;
-  else alert(data?.error || "Checkout not available yet.");
+function CheckoutButton({ product, children, className }: { 
+  product: "DIY"|"FULL"|"ADDON", 
+  children: React.ReactNode,
+  className?: string 
+}) {
+  const { data: session, status } = useSession();
+
+  const handleCheckout = async () => {
+    if (status === 'loading') return;
+    
+    if (!session) {
+      // Redirect to sign in with return URL
+      signIn(undefined, { callbackUrl: `/?checkout=${product}` });
+      return;
+    }
+
+    await startCheckout(product);
+  };
+
+  return (
+    <button onClick={handleCheckout} className={className}>
+      {children}
+    </button>
+  );
 }
 
-export default function Home() {
+function HomeContent() {
   const [activeTab, setActiveTab] = useState('individuals');
+  const { data: session, status } = useSession();
+  const searchParams = useSearchParams();
+
+  // Handle checkout after sign-in
+  useEffect(() => {
+    if (session && searchParams.get('checkout')) {
+      const product = searchParams.get('checkout') as "DIY"|"FULL"|"ADDON";
+      if (product) {
+        startCheckout(product);
+        // Clear the URL parameter
+        window.history.replaceState({}, '', '/');
+      }
+    }
+  }, [session, searchParams]);
   
   return (
     <div className="min-h-screen bg-black">
@@ -33,10 +64,28 @@ export default function Home() {
           <div className="hidden md:flex space-x-8">
             <Link href="/#features" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">How It Works</Link>
             <Link href="/#pricing" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">Pricing</Link>
-            <Link href="/#about" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">About</Link>
+            <Link href="/contact" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">Contact</Link>
           </div>
-          <div>
-            <button className="btn btn-primary">Get Started</button>
+          <div className="flex items-center gap-4">
+            {session ? (
+              <>
+                <Link href="/dashboard" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">
+                  Dashboard
+                </Link>
+                <div className="text-gray-300 text-sm">
+                  {session.user?.name || session.user?.email}
+                </div>
+              </>
+            ) : (
+              <>
+                <Link href="/auth/signin" className="text-gray-300 hover:text-blue-400 font-medium transition-colors">
+                  Sign In
+                </Link>
+                <Link href="/auth/signup" className="btn btn-primary">
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </nav>
@@ -52,14 +101,17 @@ export default function Home() {
               Reliable, Low-Latency Execution — No Black-Boxes, Just Code You Own
             </p>
             <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-             End-to-End Trading Pipeline: TradingView ➜ AWS ➜ Tradovate ➜ Telegram/X
+             TradingView ➜ AWS ➜ Tradovate ➜ Telegram/X
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button 
-                onClick={() => startCheckout("DIY")} 
+              <CheckoutButton 
+                product="DIY"
                 className="btn btn-primary">
                 Buy DIY ($500)
-              </button>
+              </CheckoutButton>
+              <Link href="/contact" className="btn bg-white text-blue-600 hover:bg-gray-100">
+                Request Demo
+              </Link>
               <Link href="/#features" className="btn btn-outline">
                 Learn More
               </Link>
@@ -182,11 +234,11 @@ export default function Home() {
                   Support: no live sessions included
                 </li>
               </ul>
-              <button 
-                onClick={() => startCheckout("DIY")} 
+              <CheckoutButton 
+                product="DIY"
                 className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
                 Get DIY Package - $500
-              </button>
+              </CheckoutButton>
             </div>
             
             {/* Full Plan - Featured */}
@@ -226,11 +278,11 @@ export default function Home() {
                   1 week troubleshooting after go-live
                 </li>
               </ul>
-              <button 
-                onClick={() => startCheckout("FULL")} 
+              <CheckoutButton 
+                product="FULL"
                 className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-xl transform hover:scale-105">
                 Get Full Package - $900
-              </button>
+              </CheckoutButton>
             </div>
             
             {/* Add-on Plan */}
@@ -267,11 +319,11 @@ export default function Home() {
                   Retest on new symbols
                 </li>
               </ul>
-              <button 
-                onClick={() => startCheckout("ADDON")} 
+              <CheckoutButton 
+                product="ADDON"
                 className="w-full bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg">
                 Get Add-on Package - $200
-              </button>
+              </CheckoutButton>
             </div>
           </div>
         </div>
@@ -400,16 +452,16 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-6">Ready to automate your TradingView alerts?</h2>
           <p className="text-xl mb-8 max-w-2xl mx-auto">Get the complete pipeline to turn your alerts into live trades with full control and transparency.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              onClick={() => startCheckout("DIY")} 
+            <CheckoutButton 
+              product="DIY"
               className="btn bg-white text-blue-600 hover:bg-gray-100">
               Buy DIY ($500)
-            </button>
-            <button 
-              onClick={() => startCheckout("FULL")} 
+            </CheckoutButton>
+            <CheckoutButton 
+              product="FULL"
               className="btn bg-white text-blue-600 hover:bg-gray-100">
               Buy Full Package ($900)
-            </button>
+            </CheckoutButton>
           </div>
         </div>
       </section>
@@ -449,9 +501,9 @@ export default function Home() {
             <div>
               <h3 className="font-semibold text-lg mb-4">Company</h3>
               <ul className="space-y-2">
-                <li><Link href="/about" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><Link href="/" className="text-gray-400 hover:text-white">Careers</Link></li>
-                <li><Link href="/" className="text-gray-400 hover:text-white">Contact</Link></li>
+                <li><Link href="/#about" className="text-gray-400 hover:text-white">About</Link></li>
+                <li><Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors">Contact Us</Link></li>
+                <li><Link href="/auth/signin" className="text-gray-400 hover:text-white">Sign In</Link></li>
               </ul>
             </div>
           </div>
@@ -463,4 +515,12 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
+  );
 }

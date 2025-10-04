@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { stripe, PRICE_IDS, siteUrl, enableCheckout } from "@/lib/stripe";
+import { prisma } from "@/lib/prisma";
 
 export const runtime = "nodejs"; // needed to access raw body
 export const dynamic = "force-dynamic";
@@ -39,16 +40,112 @@ export async function POST(request: Request) {
       const productType = session.metadata?.product;
       const customerEmail = session.customer_details?.email;
       
-      // TODO: Store purchase information in your database
-      // Example: await db.purchases.create({
-      //   email: customerEmail,
-      //   productType: productType,
-      //   purchaseDate: new Date(),
-      //   sessionId: session.id
-      // });
-      
-      console.log(`✅ User ${customerEmail} completed checkout for ${productType} (${session.id})`);
+      if (customerEmail && productType && session.amount_total) {
+        try {
+          // Find or create user
+          let user = await prisma.user.findUnique({
+            where: { email: customerEmail }
+          });
+
+          if (!user) {
+            user = await prisma.user.create({
+              data: {
+                email: customerEmail,
+                name: session.customer_details?.name || null,
+              }
+            });
+          }
+
+          // Create purchase record
+          await prisma.purchase.create({
+            data: {
+              userId: user.id,
+              stripeSessionId: session.id,
+              productType: productType,
+              amount: session.amount_total,
+              currency: session.currency || 'usd',
+              status: 'completed',
+            }
+          });
+
+          console.log(`✅ User ${customerEmail} completed checkout for ${productType} (${session.id})`);
+        } catch (error) {
+          console.error('Error storing purchase:', error);
+        }
+      }
       break;
+
+    case "customer.subscription.created":
+    case "customer.subscription.updated":
+      const subscription = event.data.object as Stripe.Subscription;
+      const customerId = subscription.customer as string;
+      
+      try {
+        // Get customer details from Stripe
+        const customer = await stripe.customers.retrieve(customerId) as Stripe.Customer;
+        
+        if (customer.email) {
+          let user = await prisma.user.findUnique({
+            where: { email: customer.email }
+          });
+
+          if (!user) {
+            user = await prisma.user.create({
+              data: {
+                email: customer.email,
+                name: customer.name || null,
+              }
+            });
+          }
+
+          // Determine product type from price ID
+          const priceId = subscription.items.data[0]?.price.id;
+          let productType = 'DIY';
+          if (priceId === PRICE_IDS.FULL) productType = 'FULL';
+          else if (priceId === PRICE_IDS.ADDON) productType = 'ADDON';
+
+          // Upsert subscription record
+          await prisma.subscription.upsert({
+            where: { stripeSubscriptionId: subscription.id },
+            update: {
+              status: subscription.status,
+              currentPeriodStart: new Date(subscription.current_period_start * 1000),
+              currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+              cancelAtPeriodEnd: subscription.cancel_at_period_end,
+            },
+            create: {
+              userId: user.id,
+              stripeSubscriptionId: subscription.id,
+              stripePriceId: priceId,
+              stripeCustomerId: customerId,
+              productType: productType,
+              status: subscription.status,
+              currentPeriodStart: new Date(subscription.current_period_start * 1000),
+              currentPeriodEnd: new Date(subscription.current_period_end * 1000),
+              cancelAtPeriodEnd: subscription.cancel_at_period_end,
+            }
+          });
+
+          console.log(`✅ Subscription ${subscription.status} for ${customer.email} (${subscription.id})`);
+        }
+      } catch (error) {
+        console.error('Error handling subscription:', error);
+      }
+      break;
+
+    case "customer.subscription.deleted":
+      const deletedSub = event.data.object as Stripe.Subscription;
+      try {
+        await prisma.subscription.update({
+          where: { stripeSubscriptionId: deletedSub.id },
+          data: { status: 'canceled' }
+        });
+        console.log(`✅ Subscription canceled: ${deletedSub.id}`);
+      } catch (error) {
+        console.error('Error canceling subscription:', error);
+      }
+      break;
+
     default:
       console.log("ℹ️ Unhandled event:", event.type);
   }
