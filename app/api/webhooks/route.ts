@@ -38,9 +38,10 @@ export async function POST(request: Request) {
     case "checkout.session.completed":
       const session = event.data.object as Stripe.Checkout.Session;
       const productType = session.metadata?.product;
+      const productId = session.metadata?.productId;
       const customerEmail = session.customer_details?.email;
       
-      if (customerEmail && productType && session.amount_total) {
+      if (customerEmail && session.amount_total) {
         try {
           // Find or create user
           let user = await prisma.user.findUnique({
@@ -56,19 +57,53 @@ export async function POST(request: Request) {
             });
           }
 
-          // Create purchase record
-          await prisma.purchase.create({
-            data: {
-              userId: user.id,
-              stripeSessionId: session.id,
-              productType: productType,
-              amount: session.amount_total,
-              currency: session.currency || 'usd',
-              status: 'completed',
-            }
-          });
+          // Handle legacy subscription/purchase (productType)
+          if (productType) {
+            // Create purchase record for legacy products
+            await prisma.purchase.create({
+              data: {
+                userId: user.id,
+                stripeSessionId: session.id,
+                productType: productType,
+                amount: session.amount_total,
+                currency: session.currency || 'usd',
+                status: 'completed',
+              }
+            });
+            console.log(`✅ User ${customerEmail} completed checkout for ${productType} (${session.id})`);
+          }
 
-          console.log(`✅ User ${customerEmail} completed checkout for ${productType} (${session.id})`);
+          // Handle digital product purchase (productId)
+          if (productId) {
+            // Find the product
+            const product = await prisma.product.findUnique({
+              where: { id: productId }
+            });
+
+            if (product) {
+              // Create or update entitlement (idempotent)
+              await prisma.entitlement.upsert({
+                where: {
+                  userId_productId: {
+                    userId: user.id,
+                    productId: product.id,
+                  }
+                },
+                update: {
+                  active: true,
+                  grantedAt: new Date(),
+                },
+                create: {
+                  userId: user.id,
+                  productId: product.id,
+                  active: true,
+                }
+              });
+              console.log(`✅ User ${customerEmail} purchased digital product: ${product.name} (${session.id})`);
+            } else {
+              console.error(`Product ${productId} not found for session ${session.id}`);
+            }
+          }
         } catch (error) {
           console.error('Error storing purchase:', error);
         }
